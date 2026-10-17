@@ -386,7 +386,10 @@
         "fontSize": "Font size in pixels",
         "lineHeight": "Line Height",
         "wrapCodeBlocks": "Wrap text inside code blocks",
-        "editorLineWidth": "Defines the maximum editor area width. An empty string or suffixes of ch (characters), px (pixels) or % (percentage) are allowed",
+        "editorLineWidth": "Defines the maximum editor area width. An empty string or suffixes of ch (characters), px (pixels), % (percentage), mm, cm or in are allowed",
+        "editorPaddingLeft": "Defines the left margin / padding of the editor page",
+        "editorPaddingRight": "Defines the right margin / padding of the editor page",
+        "titleBarWordCount": "How to display the document counter in the window title bar",
         "codeFontSize": "Font size in code Block, the range is 12 ~ 18",
         "codeFontFamily": "Font family used in code block",
         "codeBlockLineNumbers": "Whether to show the line numbers",
@@ -463,6 +466,12 @@
           "custom": "Custom",
           "native": "Native"
         },
+        "titleBarWordCount": {
+          "title": "Title Bar Counter",
+          "none": "Hidden",
+          "full": "Full label (Words: 123)",
+          "short": "Short code (W 123)"
+        },
         "requiresRestart": "Requires restart",
         "hideScrollbars": "Hide scrollbars",
         "openFilesInNewWindow": "Open files in new window",
@@ -536,9 +545,12 @@
         "fontSize": "Font size",
         "lineHeight": "Line height",
         "fontFamily": "Font family",
-        "maxWidth": "Max width",
-        "maxWidthNotes": "Maximum width of editor content. Enter a number followed by px, ch (characters) or %, e.g. 800px, 80ch or 60%. Leave empty to use the default width.",
-        "maxWidthInvalid": "Enter a number followed by px, ch or %, e.g. 800px."
+        "maxWidth": "Page width",
+        "maxWidthNotes": "Page or text area width. Enter a number followed by mm, cm, in, px, ch (characters) or %, e.g. 210mm (A4), 800px, 80ch or 60%. Leave empty to use the default A4 width (210mm).",
+        "maxWidthInvalid": "Enter a number followed by mm, cm, in, px, ch or %, e.g. 210mm or 800px.",
+        "paddingLeft": "Left margin",
+        "paddingRight": "Right margin",
+        "paddingNotes": "Page margin width. Enter a number followed by mm, cm, in, px, ch or %, e.g. 30mm, 15mm or 50px."
       },
       "codeBlock": {
         "title": "Code Block",

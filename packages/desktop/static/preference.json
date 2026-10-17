@@ -25,7 +25,10 @@
   "sourceCodeLineNumbers": true,
   "trimUnnecessaryCodeBlockEmptyLines": true,
   "wrapCodeBlocks": false,
-  "editorLineWidth": "",
+  "editorLineWidth": "210mm",
+  "editorPaddingLeft": "30mm",
+  "editorPaddingRight": "15mm",
+  "titleBarWordCount": "none",
 
   "autoPairBracket": true,
   "autoPairMarkdownSyntax": true,

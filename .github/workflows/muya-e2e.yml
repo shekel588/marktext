@@ -36,10 +36,12 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Install Playwright browser (${{ matrix.project }})
-        run: pnpm -C packages/muya/e2e exec playwright install --with-deps ${{ matrix.project }}
+        working-directory: packages/muya/e2e
+        run: bun x playwright install --with-deps ${{ matrix.project }}
 
       - name: Run Playwright (${{ matrix.project }})
-        run: pnpm -C packages/muya/e2e exec playwright test --project=${{ matrix.project }}
+        working-directory: packages/muya/e2e
+        run: bun x playwright test --project=${{ matrix.project }}
 
       - name: Upload report on failure
         if: failure()

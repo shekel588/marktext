@@ -34,30 +34,46 @@ function run(cmd, opts = {}) {
 }
 
 // Detect which package manager invoked this postinstall so commands work
-// regardless of whether the caller is pnpm (primary) or npm (fallback).
+// regardless of whether the caller is bun, pnpm, or npm.
 const userAgent = process.env.npm_config_user_agent || ''
 const isPnpm = userAgent.startsWith('pnpm')
-// patch-package and electron-rebuild are locally installed; call their
-// node_modules/.bin entries directly (hoisted by shamefully-hoist=true).
+const isBun = userAgent.startsWith('bun') || Boolean(process.versions.bun)
+// patch-package and electron-rebuild are locally installed; find their
+// node_modules/.bin entries in either packages/desktop or repoRoot (when hoisted by bun/npm).
 const ext = process.platform === 'win32' ? '.cmd' : ''
-const patchPackageBin = path.join(desktopRoot, 'node_modules', '.bin', `patch-package${ext}`)
-const electronRebuildBin = path.join(desktopRoot, 'node_modules', '.bin', `electron-rebuild${ext}`)
+const resolveBin = (name) => {
+  const localBin = path.join(desktopRoot, 'node_modules', '.bin', `${name}${ext}`)
+  if (fs.existsSync(localBin)) return localBin
+  return path.join(repoRoot, 'node_modules', '.bin', `${name}${ext}`)
+}
+const resolveMod = (...segments) => {
+  const localMod = path.join(desktopRoot, 'node_modules', ...segments)
+  if (fs.existsSync(localMod)) return localMod
+  return path.join(repoRoot, 'node_modules', ...segments)
+}
+const patchPackageBin = resolveBin('patch-package')
+const electronRebuildBin = resolveBin('electron-rebuild')
+const tsxBin = resolveBin('tsx')
+const tscBin = resolveBin('tsc')
 
 // ── 1. Ensure native-keymap source is present (pm removes it on optional failure) ──
-const nativeKeymapDir = path.join(desktopRoot, 'node_modules', 'native-keymap')
+const nativeKeymapDir = resolveMod('native-keymap')
 if (!fs.existsSync(nativeKeymapDir)) {
   console.log('Installing native-keymap source (skipping compilation)...')
   // native-keymap is already in marktext's optionalDependencies; the add
   // re-installs without changing the version range.
   if (isPnpm) {
     run('pnpm --filter marktext add native-keymap --ignore-scripts')
+  } else if (isBun) {
+    run('bun add native-keymap --ignore-scripts', { cwd: desktopRoot })
   } else {
     run('npm install native-keymap --ignore-scripts --no-save', { cwd: desktopRoot })
   }
 }
 
 // ── 2. Download + extract Electron binary ────────────────────────────────────
-const electronInstall = path.join(desktopRoot, 'node_modules', 'electron', 'install.js')
+const electronDir = resolveMod('electron')
+const electronInstall = path.join(electronDir, 'install.js')
 
 if (!fs.existsSync(electronInstall)) {
   console.error('electron/install.js not found — skipping Electron download')
@@ -72,15 +88,15 @@ if (!fs.existsSync(electronInstall)) {
         ? 'Electron.app/Contents/MacOS/Electron'
         : 'electron'
 
-  const pathTxt = path.join(desktopRoot, 'node_modules', 'electron', 'path.txt')
-  const distDir = path.join(desktopRoot, 'node_modules', 'electron', 'dist')
+  const pathTxt = path.join(electronDir, 'path.txt')
+  const distDir = path.join(electronDir, 'dist')
 
   // On macOS we also require Frameworks/ — yauzl v2.10.0 hangs on Node v26+ and
   // silently produces an incomplete dist/ without Frameworks.
   const isComplete = () => {
     if (!fs.existsSync(pathTxt)) return false
     const rel = fs.readFileSync(pathTxt, 'utf8').trim()
-    if (!fs.existsSync(path.join(desktopRoot, 'node_modules', 'electron', rel))) return false
+    if (!fs.existsSync(path.join(electronDir, rel))) return false
     if (plat === 'darwin' || plat === 'mas') {
       return fs.existsSync(path.join(distDir, 'Electron.app', 'Contents', 'Frameworks'))
     }
@@ -108,7 +124,7 @@ if (!fs.existsSync(electronInstall)) {
       (plat === 'darwin' || plat === 'mas') &&
       !fs.existsSync(path.join(distDir, 'Electron.app', 'Contents', 'Frameworks'))
     ) {
-      const { version } = require(path.join(desktopRoot, 'node_modules', 'electron', 'package.json'))
+      const { version } = require(path.join(electronDir, 'package.json'))
       const arch = process.env.npm_config_arch || os.arch()
       const zipName = `electron-v${version}-darwin-${arch === 'arm64' ? 'arm64' : 'x64'}.zip`
       const cacheRoot =
@@ -149,7 +165,12 @@ if (!fs.existsSync(electronInstall)) {
 
 // ── 3. Apply C++20 patch to native-keymap (patches/ lives in packages/desktop) ──
 console.log('Applying patches...')
-run(`"${patchPackageBin}"`, { cwd: desktopRoot })
+const desktopHasNativeKeymap = fs.existsSync(path.join(desktopRoot, 'node_modules', 'native-keymap'))
+if (desktopHasNativeKeymap) {
+  run(`"${patchPackageBin}"`, { cwd: desktopRoot })
+} else {
+  run(`"${patchPackageBin}" --patch-dir packages/desktop/patches`, { cwd: repoRoot })
+}
 
 // ── 4. Rebuild native modules for Electron ABI ──────────────────────────────
 console.log('Rebuilding native modules for Electron...')
@@ -157,7 +178,7 @@ run(`"${electronRebuildBin}" -f`, { cwd: desktopRoot })
 
 // ── 5. Generate minified locale files ───────────────────────────────────────
 console.log('Minifying locales...')
-run('pnpm tsx scripts/minify-locales.ts')
+run(`"${tsxBin}" scripts/minify-locales.ts`)
 
 // ── 6. Emit @muyajs/core typings ────────────────────────────────────────────
 // The package's `exports` map points at TS source and it ships no built
@@ -165,4 +186,4 @@ run('pnpm tsx scripts/minify-locales.ts')
 // `pnpm typecheck` regenerates them, but an IDE opened straight after install
 // would otherwise see an unresolved import.
 console.log('Emitting muya typings...')
-run('pnpm --filter @muyajs/core build:types')
+run(`"${tscBin}" -p packages/muya/tsconfig.build.json`)

@@ -117,8 +117,8 @@ SOFTWARE.
   color: #d19a66;
 }
 .cm-s-one-dark .cm-link {
-  color: #98c379;
-  border-bottom: solid 1px #98c379;
+  color: var(--linkColor, var(--themeColor, #98c379));
+  border-bottom: solid 1px var(--linkColor, var(--themeColor, #98c379));
 }
 .cm-s-one-dark .cm-builtin {
   color: #e06c75;

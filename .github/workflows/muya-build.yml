@@ -23,4 +23,4 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Build @muyajs/core (tsc + vite)
-        run: pnpm -C packages/muya build
+        run: bun --filter @muyajs/core build

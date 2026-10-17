@@ -457,10 +457,16 @@ onBeforeUnmount(() => {
   overflow: auto;
 }
 .source-code .CodeMirror {
+  box-sizing: border-box;
   height: auto;
   margin: 50px auto;
   max-width: var(--editorAreaWidth);
+  padding: 0 var(--editorPaddingRight, 15mm) 0 var(--editorPaddingLeft, 30mm);
   background: transparent;
+}
+.source-code .CodeMirror .cm-link,
+.source-code .CodeMirror .cm-url {
+  color: var(--linkColor, var(--themeColor)) !important;
 }
 .source-code .CodeMirror-gutters {
   border-right: none;

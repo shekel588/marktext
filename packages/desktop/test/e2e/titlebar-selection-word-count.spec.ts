@@ -56,6 +56,7 @@ test.describe('Title bar selection word count', () => {
     const launched = await launchWithMarkdown(DOC, { suppressErrorDialog: true })
     app = launched.app
     page = launched.page
+    await sendIpcToRenderer(app, 'mt::user-preference', { titleBarWordCount: 'short' })
     await clearRendererErrors(app)
   })
 
@@ -179,6 +180,7 @@ test.describe('Title bar selection word count', () => {
 test('shows no selected count for a rectangular table selection', async() => {
   const { app, page } = await launchWithMarkdown(TABLE_DOC, { suppressErrorDialog: true })
   try {
+    await sendIpcToRenderer(app, 'mt::user-preference', { titleBarWordCount: 'short' })
     await clearRendererErrors(app)
     const counter = page.locator('.word-count')
     await expect(counter).toHaveText(/^W \d+$/)

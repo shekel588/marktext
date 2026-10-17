@@ -74,7 +74,9 @@ export const checkUpdates = (browserWindow: BrowserWindow | null): void => {
   if (!runningUpdate) {
     runningUpdate = true
     win = browserWindow
-    autoUpdater.checkForUpdates()
+    Promise.resolve(autoUpdater.checkForUpdates()).catch(() => {
+      runningUpdate = false
+    })
   }
 }
 

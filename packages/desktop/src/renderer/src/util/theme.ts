@@ -197,16 +197,34 @@ export const addThemeStyle = (theme: string): void => {
   }
 }
 
-export const setEditorWidth = (value: string): void => {
+const CSS_LENGTH_REG = /^[0-9]+(?:\.[0-9]+)?(?:ch|px|%|mm|cm|in)$/
+
+export const setEditorWidth = (
+  value: string,
+  paddingLeft?: string,
+  paddingRight?: string
+): void => {
   const EDITOR_WIDTH_STYLE_ID = 'editor-width'
-  let result = ''
-  if (value && /^[0-9]+(?:ch|px|%)$/.test(value)) {
-    // Add 100px for the container's horizontal padding. Set both the legacy
-    // camelCase var (source mode) and the kebab-case var the active
-    // @muyajs/core engine reads for `.mu-container` max-width (issue #4828).
-    const width = `calc(100px + ${value})`
-    result = `:root { --editorAreaWidth: ${width}; --editor-area-width: ${width}; }`
+  const rules: string[] = []
+  const validLeft = paddingLeft && CSS_LENGTH_REG.test(paddingLeft) ? paddingLeft : ''
+  const validRight = paddingRight && CSS_LENGTH_REG.test(paddingRight) ? paddingRight : ''
+
+  if (validLeft) {
+    rules.push(`--editorPaddingLeft: ${validLeft}; --editor-padding-left: ${validLeft};`)
   }
+  if (validRight) {
+    rules.push(`--editorPaddingRight: ${validRight}; --editor-padding-right: ${validRight};`)
+  }
+  if (value && CSS_LENGTH_REG.test(value)) {
+    // When custom left/right margins are not set, keep the legacy 100px
+    // horizontal padding offset for px/ch/% values; physical page units
+    // (mm/cm/in) or explicit left/right margins represent total page width.
+    const isPageUnit = /(?:mm|cm|in)$/.test(value)
+    const width =
+      isPageUnit || validLeft || validRight ? value : `calc(100px + ${value})`
+    rules.push(`--editorAreaWidth: ${width}; --editor-area-width: ${width};`)
+  }
+  const result = rules.length ? `:root { ${rules.join(' ')} }` : ''
   let styleEle = document.querySelector(`#${EDITOR_WIDTH_STYLE_ID}`) as HTMLStyleElement | null
   if (!styleEle) {
     styleEle = document.createElement('style')

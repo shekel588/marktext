@@ -437,7 +437,10 @@
         "imageRelativeDirectoryName": "相対画像フォルダー名",
         "fileSortOrder": "開いたフォルダー内のファイルの並べ替え順、昇順または降順",
         "openedFilesInSidebar": "開いているファイルをサイドバーに表示するかどうか",
-        "showPandocConvert": "Pandoc 変換メニューを表示します。Pandoc がインストールされている必要があります。"
+        "showPandocConvert": "Pandoc 変換メニューを表示します。Pandoc がインストールされている必要があります。",
+        "editorPaddingLeft": "Defines the left margin / padding of the editor page",
+        "editorPaddingRight": "Defines the right margin / padding of the editor page",
+        "titleBarWordCount": "How to display the document counter in the window title bar"
       }
     },
     "categories": {
@@ -467,7 +470,13 @@
         "hideScrollbars": "スクロールバーを隠す",
         "openFilesInNewWindow": "新しいウィンドウでファイルを開く",
         "openFoldersInNewWindow": "新しいウィンドウでフォルダーを開く",
-        "zoom": "ズーム"
+        "zoom": "ズーム",
+        "titleBarWordCount": {
+          "title": "Title Bar Counter",
+          "none": "Hidden",
+          "full": "Full label (Words: 123)",
+          "short": "Short code (W 123)"
+        }
       },
       "startup": {
         "title": "起動",
@@ -538,7 +547,10 @@
         "fontFamily": "フォントファミリー",
         "maxWidth": "最大幅",
         "maxWidthNotes": "エディターコンテンツの最大幅。数値の後に単位 px、ch (文字数)、% のいずれかを付けて入力します (例 : 800px、80ch、60%)。空欄の場合は既定の幅を使用します。",
-        "maxWidthInvalid": "数値の後に px、ch、% のいずれかを付けて入力してください (例 : 800px)。"
+        "maxWidthInvalid": "数値の後に px、ch、% のいずれかを付けて入力してください (例 : 800px)。",
+        "paddingLeft": "Left margin",
+        "paddingRight": "Right margin",
+        "paddingNotes": "Page margin width. Enter a number followed by mm, cm, in, px, ch or %, e.g. 30mm, 15mm or 50px."
       },
       "codeBlock": {
         "title": "コードブロック",

@@ -437,7 +437,10 @@
         "imageRelativeDirectoryName": "El nombre de la carpeta de imagen relativa",
         "fileSortOrder": "El orden de clasificación de los archivos en las carpetas abiertas: ascendente o descendente",
         "openedFilesInSidebar": "Si mostrar los archivos abiertos en la barra lateral",
-        "showPandocConvert": "Mostrar el menú de conversión de Pandoc. Requiere tener Pandoc instalado."
+        "showPandocConvert": "Mostrar el menú de conversión de Pandoc. Requiere tener Pandoc instalado.",
+        "editorPaddingLeft": "Defines the left margin / padding of the editor page",
+        "editorPaddingRight": "Defines the right margin / padding of the editor page",
+        "titleBarWordCount": "How to display the document counter in the window title bar"
       }
     },
     "categories": {
@@ -467,7 +470,13 @@
         "hideScrollbars": "Ocultar barras de desplazamiento",
         "openFilesInNewWindow": "Abrir archivos en nueva ventana",
         "openFoldersInNewWindow": "Abrir carpetas en nueva ventana",
-        "zoom": "Zoom"
+        "zoom": "Zoom",
+        "titleBarWordCount": {
+          "title": "Title Bar Counter",
+          "none": "Hidden",
+          "full": "Full label (Words: 123)",
+          "short": "Short code (W 123)"
+        }
       },
       "startup": {
         "title": "Inicio",
@@ -538,7 +547,10 @@
         "fontFamily": "Familia de fuente",
         "maxWidth": "Ancho máximo",
         "maxWidthNotes": "Ancho máximo del contenido del editor. Introduce un número seguido de px, ch (caracteres) o %, por ejemplo 800px, 80ch o 60%. Déjalo vacío para usar el ancho predeterminado.",
-        "maxWidthInvalid": "Introduce un número seguido de px, ch o %, por ejemplo 800px."
+        "maxWidthInvalid": "Introduce un número seguido de px, ch o %, por ejemplo 800px.",
+        "paddingLeft": "Left margin",
+        "paddingRight": "Right margin",
+        "paddingNotes": "Page margin width. Enter a number followed by mm, cm, in, px, ch or %, e.g. 30mm, 15mm or 50px."
       },
       "codeBlock": {
         "title": "Bloque de Código",

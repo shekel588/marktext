@@ -1,6 +1,7 @@
 import path from 'path'
 import { shell, type BrowserWindow, type MenuItemConstructorOptions } from 'electron'
 import { isFile } from 'common/filesystem'
+import { GITHUB_REPO_URL } from '../../config'
 import * as actions from '../actions/help'
 import { checkUpdates } from '../actions/marktext'
 import { t } from '../../i18n'
@@ -16,10 +17,14 @@ const isUpdatable = (): boolean => {
   } else if (process.env.APPIMAGE) {
     // We are running as AppImage.
     return true
-  } else if (process.platform === 'win32' && isFile(path.join(process.resourcesPath, 'md.ico'))) {
-    // Windows is a little but tricky. The update resource file is always available and
+  } else if (
+    process.platform === 'win32' &&
+    (isFile(path.join(process.resourcesPath, 'icons', 'md.ico')) ||
+      isFile(path.join(process.resourcesPath, 'md.ico')))
+  ) {
+    // Windows is a little bit tricky. The update resource file is always available and
     // there is no way to check the target type at runtime (electron-builder#4119).
-    // As workaround we check whether "md.ico" exists that is only included in the setup.
+    // As workaround we check whether "icons/md.ico" exists that is only included in the setup.
     return true
   }
 
@@ -41,7 +46,7 @@ export default function(): MenuItemConstructorOptions {
     {
       label: t('menu.help.changelog'),
       click() {
-        shell.openExternal('https://github.com/marktext/marktext/releases')
+        shell.openExternal(`${GITHUB_REPO_URL}/releases`)
       }
     },
     {
@@ -65,19 +70,19 @@ export default function(): MenuItemConstructorOptions {
     {
       label: t('menu.help.askQuestion'),
       click() {
-        shell.openExternal('https://github.com/marktext/marktext/discussions')
+        shell.openExternal(`${GITHUB_REPO_URL}/discussions`)
       }
     },
     {
       label: t('menu.help.reportBug'),
       click() {
-        shell.openExternal('https://github.com/marktext/marktext/issues')
+        shell.openExternal(`${GITHUB_REPO_URL}/issues`)
       }
     },
     {
       label: t('menu.help.viewSource'),
       click() {
-        shell.openExternal('https://github.com/marktext/marktext')
+        shell.openExternal(GITHUB_REPO_URL)
       }
     },
     {
@@ -86,7 +91,7 @@ export default function(): MenuItemConstructorOptions {
     {
       label: t('menu.help.license'),
       click() {
-        shell.openExternal('https://github.com/marktext/marktext/blob/develop/LICENSE')
+        shell.openExternal(`${GITHUB_REPO_URL}/blob/develop/LICENSE`)
       }
     }
   ]

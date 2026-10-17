@@ -34,10 +34,28 @@
           :description="t('preferences.editor.textEditor.maxWidth')"
           :notes="t('preferences.editor.textEditor.maxWidthNotes')"
           :input="editorLineWidth"
-          default-value="800px / 80ch / 60%"
-          :regex-validator="/^(?:$|[0-9]+(?:ch|px|%)$)/"
+          default-value="210mm / 800px / 80ch / 60%"
+          :regex-validator="/^(?:$|[0-9]+(?:\.[0-9]+)?(?:ch|px|%|mm|cm|in)$)/"
           :error-message="t('preferences.editor.textEditor.maxWidthInvalid')"
           :on-change="(value) => onSelectChange('editorLineWidth', value)"
+        />
+        <text-box
+          :description="t('preferences.editor.textEditor.paddingLeft')"
+          :notes="t('preferences.editor.textEditor.paddingNotes')"
+          :input="editorPaddingLeft"
+          default-value="30mm / 50px"
+          :regex-validator="/^(?:$|[0-9]+(?:\.[0-9]+)?(?:ch|px|%|mm|cm|in)$)/"
+          :error-message="t('preferences.editor.textEditor.maxWidthInvalid')"
+          :on-change="(value) => onSelectChange('editorPaddingLeft', value)"
+        />
+        <text-box
+          :description="t('preferences.editor.textEditor.paddingRight')"
+          :notes="t('preferences.editor.textEditor.paddingNotes')"
+          :input="editorPaddingRight"
+          default-value="15mm / 50px"
+          :regex-validator="/^(?:$|[0-9]+(?:\.[0-9]+)?(?:ch|px|%|mm|cm|in)$)/"
+          :error-message="t('preferences.editor.textEditor.maxWidthInvalid')"
+          :on-change="(value) => onSelectChange('editorPaddingRight', value)"
         />
       </template>
     </compound>
@@ -234,6 +252,8 @@ const {
   autoNormalizeLineEndings,
   wrapCodeBlocks,
   editorLineWidth,
+  editorPaddingLeft,
+  editorPaddingRight,
   defaultEncoding,
   autoGuessEncoding,
   trimTrailingNewline

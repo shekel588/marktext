@@ -50,6 +50,9 @@ export interface PreferencesState {
   trimUnnecessaryCodeBlockEmptyLines: boolean
   wrapCodeBlocks: boolean
   editorLineWidth: string
+  editorPaddingLeft: string
+  editorPaddingRight: string
+  titleBarWordCount: 'none' | 'full' | 'short' | string
 
   // ----- Markdown editing -----
   autoPairBracket: boolean
@@ -176,7 +179,10 @@ export const usePreferencesStore = defineStore('preferences', {
     sourceCodeLineNumbers: true,
     trimUnnecessaryCodeBlockEmptyLines: true,
     wrapCodeBlocks: false,
-    editorLineWidth: '',
+    editorLineWidth: '210mm',
+    editorPaddingLeft: '30mm',
+    editorPaddingRight: '15mm',
+    titleBarWordCount: 'none',
 
     autoPairBracket: true,
     autoPairMarkdownSyntax: true,

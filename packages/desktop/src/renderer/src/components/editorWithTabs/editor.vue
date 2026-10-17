@@ -212,6 +212,8 @@ const {
   hideLinkPopup,
   autoCheck,
   editorLineWidth,
+  editorPaddingLeft,
+  editorPaddingRight,
   wrapCodeBlocks,
   imageInsertAction,
   imagePreferRelativeDirectory,
@@ -630,10 +632,8 @@ watch(hideQuickInsertHint, (value, oldValue) => {
   }
 })
 
-watch(editorLineWidth, (value, oldValue) => {
-  if (value !== oldValue) {
-    setEditorWidth(value)
-  }
+watch([editorLineWidth, editorPaddingLeft, editorPaddingRight], ([width, left, right]) => {
+  setEditorWidth(width, left, right)
 })
 
 watch(wrapCodeBlocks, (value, oldValue) => {
@@ -2031,7 +2031,7 @@ onMounted(() => {
 
   document.addEventListener('keyup', keyup)
 
-  setEditorWidth(editorLineWidth.value)
+  setEditorWidth(editorLineWidth.value, editorPaddingLeft.value, editorPaddingRight.value)
 })
 
 onBeforeUnmount(() => {

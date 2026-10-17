@@ -437,7 +437,10 @@
         "autoNormalizeLineEndings": "Dosyaları açarken yeni satır karakterlerini otomatik olarak normalleştir. Devre dışı bırakıldığında dosyalar olduğu gibi açılır.",
         "fileSortOrder": "Açık klasörlerdeki dosyaların sıralama düzeni: artan veya azalan.",
         "openedFilesInSidebar": "Açık dosyaların kenar çubuğunda gösterilip gösterilmeyeceği.",
-        "showPandocConvert": "Pandoc dönüştürme menüsünü gösterir. Pandoc kurulu olmalıdır."
+        "showPandocConvert": "Pandoc dönüştürme menüsünü gösterir. Pandoc kurulu olmalıdır.",
+        "editorPaddingLeft": "Defines the left margin / padding of the editor page",
+        "editorPaddingRight": "Defines the right margin / padding of the editor page",
+        "titleBarWordCount": "How to display the document counter in the window title bar"
       }
     },
     "categories": {
@@ -467,7 +470,13 @@
         "hideScrollbars": "Kaydırma çubuklarını gizle",
         "openFilesInNewWindow": "Dosyaları yeni pencerede aç",
         "openFoldersInNewWindow": "Klasörleri yeni pencerede aç",
-        "zoom": "Yakınlaştırma"
+        "zoom": "Yakınlaştırma",
+        "titleBarWordCount": {
+          "title": "Title Bar Counter",
+          "none": "Hidden",
+          "full": "Full label (Words: 123)",
+          "short": "Short code (W 123)"
+        }
       },
       "startup": {
         "title": "Başlangıç Seçenekleri",
@@ -538,7 +547,10 @@
         "fontFamily": "Yazı tipi ailesi",
         "maxWidth": "Maksimum genişlik",
         "maxWidthNotes": "Düzenleyici içeriğinin maksimum genişliği. Bir sayının ardından px, ch (karakter) veya % girin, örneğin 800px, 80ch veya 60%. Varsayılan genişliği kullanmak için boş bırakın.",
-        "maxWidthInvalid": "Bir sayının ardından px, ch veya % girin, örneğin 800px."
+        "maxWidthInvalid": "Bir sayının ardından px, ch veya % girin, örneğin 800px.",
+        "paddingLeft": "Left margin",
+        "paddingRight": "Right margin",
+        "paddingNotes": "Page margin width. Enter a number followed by mm, cm, in, px, ch or %, e.g. 30mm, 15mm or 50px."
       },
       "codeBlock": {
         "title": "Kod Bloğu",

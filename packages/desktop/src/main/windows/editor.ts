@@ -95,8 +95,8 @@ class EditorWindow extends BaseWindow {
       !bufferStoreInfo && !rootDirectory && fileList.length === 0 && markdownList.length === 0
 
     const mainWindowState = windowStateKeeper({
-      defaultWidth: 1200,
-      defaultHeight: 800
+      defaultWidth: 850,
+      defaultHeight: 1122
     })
 
     const { x, y, width, height } = ensureWindowPosition(mainWindowState)

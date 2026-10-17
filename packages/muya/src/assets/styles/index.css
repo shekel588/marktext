@@ -12,7 +12,9 @@
     --editor-bg-color: rgb(255 255 255 / 100%);
 
     /* width of the centered editing column (`.mu-container` max-width) */
-    --editor-area-width: 800px;
+    --editor-padding-left: 30mm;
+    --editor-padding-right: 15mm;
+    --editor-area-width: 210mm;
     --delete-color: #ff6969;
 
     /* GitLab inline diff washes for `{+ … +}` / `[- … -]`. */
@@ -43,7 +45,7 @@
        Consumers override them per theme. The desktop themes currently use
        camelCase names (e.g. --linkColor, --h1Color); they will be migrated
        to these kebab-case names as part of the muyajs -> @muyajs/core move. */
-    --link-color: rgb(20 86 240);
+    --link-color: var(--theme-color);
     --h1-color: var(--editor-color-80);
     --h2-color: var(--editor-color-80);
     --h3-color: var(--editor-color-80);

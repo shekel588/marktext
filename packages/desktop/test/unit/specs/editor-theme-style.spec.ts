@@ -114,6 +114,14 @@ describe('theme.ts style injection helpers', () => {
       }
     )
 
+    it('supports page units (mm, cm, in) and left/right padding overrides', () => {
+      setEditorWidth('210mm', '30mm', '15mm')
+
+      expect(styleHtml(WIDTH_STYLE_ID)).toBe(
+        ':root { --editorPaddingLeft: 30mm; --editor-padding-left: 30mm; --editorPaddingRight: 15mm; --editor-padding-right: 15mm; --editorAreaWidth: 210mm; --editor-area-width: 210mm; }'
+      )
+    })
+
     it('reuses a single style element across calls', () => {
       setEditorWidth('60ch')
       setEditorWidth('50%')

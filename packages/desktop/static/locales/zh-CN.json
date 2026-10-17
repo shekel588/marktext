@@ -437,7 +437,10 @@
         "imageRelativeDirectoryName": "相对图片文件夹名称",
         "fileSortOrder": "打开文件夹中文件的排序顺序：升序或降序",
         "openedFilesInSidebar": "是否在侧边栏中显示已打开文件",
-        "showPandocConvert": "显示 Pandoc 转换菜单。需要先安装 Pandoc。"
+        "showPandocConvert": "显示 Pandoc 转换菜单。需要先安装 Pandoc。",
+        "editorPaddingLeft": "Defines the left margin / padding of the editor page",
+        "editorPaddingRight": "Defines the right margin / padding of the editor page",
+        "titleBarWordCount": "How to display the document counter in the window title bar"
       }
     },
     "categories": {
@@ -467,7 +470,13 @@
         "hideScrollbars": "隐藏滚动条",
         "openFilesInNewWindow": "在新窗口中打开文件",
         "openFoldersInNewWindow": "在新窗口中打开文件夹",
-        "zoom": "缩放"
+        "zoom": "缩放",
+        "titleBarWordCount": {
+          "title": "Title Bar Counter",
+          "none": "Hidden",
+          "full": "Full label (Words: 123)",
+          "short": "Short code (W 123)"
+        }
       },
       "startup": {
         "title": "启动",
@@ -538,7 +547,10 @@
         "fontFamily": "字体系列",
         "maxWidth": "最大宽度",
         "maxWidthNotes": "编辑器内容的最大宽度。数字后需带单位 px、ch（字符数）或 %，例如 800px、80ch、60%。留空则使用默认宽度。",
-        "maxWidthInvalid": "请输入数字并带上单位 px、ch 或 %，例如 800px。"
+        "maxWidthInvalid": "请输入数字并带上单位 px、ch 或 %，例如 800px。",
+        "paddingLeft": "Left margin",
+        "paddingRight": "Right margin",
+        "paddingNotes": "Page margin width. Enter a number followed by mm, cm, in, px, ch or %, e.g. 30mm, 15mm or 50px."
       },
       "codeBlock": {
         "title": "代码块",

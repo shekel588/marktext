@@ -1,7 +1,12 @@
 /* Common CSS use by both light and dark themes */
 :root {
   --titleBarHeight: 32px;
-  --editorAreaWidth: 750px;
+  --editorPaddingLeft: 30mm;
+  --editorPaddingRight: 15mm;
+  --editorAreaWidth: 210mm;
+  --editor-padding-left: var(--editorPaddingLeft);
+  --editor-padding-right: var(--editorPaddingRight);
+  --editor-area-width: var(--editorAreaWidth);
 
   /*editor*/
   /*Theme color cluster*/
@@ -74,6 +79,8 @@
   --blockquoteBorderColor: var(--themeColor);
   --hrColor: var(--editorColor10);
   --linkColor: var(--themeColor);
+  --link-color: var(--linkColor);
+  --blockquote-border-color: var(--blockquoteBorderColor);
   --strongColor: var(--editorColor);
   --emColor: var(--editorColor);
   --listMarkerColor: var(--editorColor50);

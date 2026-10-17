@@ -1,5 +1,9 @@
 appId: com.github.marktext.marktext
 productName: MarkText
+publish:
+  provider: github
+  owner: shekel588
+  repo: marktext
 directories:
   buildResources: build
   output: ../../dist

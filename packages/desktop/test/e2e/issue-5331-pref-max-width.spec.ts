@@ -60,6 +60,6 @@ test.describe('Preferences max width (#5331)', () => {
 
     await input.fill('600px')
     await expect(error).toBeHidden()
-    await expect.poll(() => editorMaxWidth(page)).toBe('700px')
+    await expect.poll(() => editorMaxWidth(page)).toBe('600px')
   })
 })

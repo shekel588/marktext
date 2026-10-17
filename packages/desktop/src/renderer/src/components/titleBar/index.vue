@@ -59,7 +59,7 @@
           <span class="text-center-vertical">&#9776;</span>
         </div>
         <el-tooltip
-          v-if="wordCount"
+          v-if="wordCount && titleBarWordCount !== 'none'"
           class="item"
           popper-class="word-count-tooltip"
           placement="bottom-end"
@@ -82,7 +82,7 @@
             </div>
           </template>
           <div
-            v-if="wordCount"
+            v-if="wordCount && titleBarWordCount !== 'none'"
             class="word-count"
             @click.stop="handleWordClick"
           >
@@ -212,7 +212,7 @@ onMounted(async () => {
   }
 })
 
-const { titleBarStyle } = storeToRefs(preferencesStore)
+const { titleBarStyle, titleBarWordCount } = storeToRefs(preferencesStore)
 const { showTabBar } = storeToRefs(layoutStore)
 
 const paths = computed(() => pathBreadcrumb(props.pathname ?? '', PATH_SEPARATOR))
@@ -221,14 +221,24 @@ const showCustomTitleBar = computed(() => {
   return titleBarStyle.value === 'custom' && !isOsx
 })
 
+const FULL_LABELS = {
+  word: 'menu.counter.words',
+  character: 'menu.counter.characters',
+  paragraph: 'menu.counter.paragraphs',
+  all: 'menu.counter.allCharacters'
+} as const
+
 const wordCountText = computed(() => {
   if (!props.wordCount) return ''
 
   const value = props.wordCount[show.value]
   const selectionValue = props.selectionWordCount?.[show.value]
-  return selectionValue == null
-    ? `${HASH[show.value].short} ${value}`
-    : `${HASH[show.value].short} ${value} / ${selectionValue}`
+  const countStr = selectionValue == null ? `${value}` : `${value} / ${selectionValue}`
+
+  if (titleBarWordCount.value === 'full') {
+    return `${t(FULL_LABELS[show.value])}: ${countStr}`
+  }
+  return `${HASH[show.value].short} ${countStr}`
 })
 
 const formatCountPair = (key: keyof FileWordCount) => {
@@ -426,9 +436,10 @@ div.title > span > .path > bdi > span {
   position: absolute;
   top: 0;
   left: 0;
-  width: 118px; /* + 2*10px padding*/
+  min-width: 118px;
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
 }
 .right-toolbar {
   height: 100%;

@@ -69,7 +69,7 @@
   --blockquoteTextColor: rgba(157, 165, 180, 0.6);
   --blockquoteBorderColor: #e2c08d;
   --hrColor: #4b5362;
-  --linkColor: #61afef;
+  --linkColor: var(--themeColor);
   --strongColor: #e2c08d;
   --emColor: #c678dd;
   --listMarkerColor: #e06c75;
@@ -89,7 +89,7 @@
   --floatBorderColor: #181a1f;
   --floatShadow: rgba(0, 0, 0, 0.3);
   --maskColor: rgba(0, 0, 0, 0.7);
-  --editorAreaWidth: 750px;
+  --editorAreaWidth: 210mm;
 
   /* @muyajs/core (kebab-case) editor variables
      Additive prep for the muyajs -> @muyajs/core editor swap. These

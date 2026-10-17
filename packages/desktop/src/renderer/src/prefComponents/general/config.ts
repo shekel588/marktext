@@ -12,6 +12,21 @@ export const getTitleBarStyleOptions = (): PrefSelectOption<string>[] => [
   }
 ]
 
+export const getTitleBarWordCountOptions = (): PrefSelectOption<string>[] => [
+  {
+    label: t('preferences.general.window.titleBarWordCount.none'),
+    value: 'none'
+  },
+  {
+    label: t('preferences.general.window.titleBarWordCount.full'),
+    value: 'full'
+  },
+  {
+    label: t('preferences.general.window.titleBarWordCount.short'),
+    value: 'short'
+  }
+]
+
 export const zoomOptions: PrefSelectOption<number>[] = [
   {
     label: '50.0%',

@@ -103,6 +103,7 @@ test.describe('Title-bar word counter (item 24)', () => {
     const launched = await launchWithMarkdown('# Counter\n\nOne two three.\n')
     app = launched.app
     page = launched.page
+    await sendIpcToRenderer(app, 'mt::user-preference', { titleBarWordCount: 'short' })
     await placeCaretInEditor(page)
   })
 

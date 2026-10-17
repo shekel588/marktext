@@ -96,10 +96,28 @@
     "default": true
   },
   "editorLineWidth": {
-    "description": "Editor--Defines the maximum editor area width. An empty string or suffixes of ch (characters), px (pixels) or % (percentage) are allowed.",
+    "description": "Editor--Defines the maximum editor area width. An empty string or suffixes of ch (characters), px (pixels), % (percentage), mm, cm or in are allowed.",
     "type": "string",
-    "pattern": "^(?:$|[0-9]+(?:ch|px|%)$)",
-    "default": ""
+    "pattern": "^(?:$|[0-9]+(?:\\.[0-9]+)?(?:ch|px|%|mm|cm|in)$)",
+    "default": "210mm"
+  },
+  "editorPaddingLeft": {
+    "description": "Editor--Defines the left page margin / padding of the editor area.",
+    "type": "string",
+    "pattern": "^(?:$|[0-9]+(?:\\.[0-9]+)?(?:ch|px|%|mm|cm|in)$)",
+    "default": "30mm"
+  },
+  "editorPaddingRight": {
+    "description": "Editor--Defines the right page margin / padding of the editor area.",
+    "type": "string",
+    "pattern": "^(?:$|[0-9]+(?:\\.[0-9]+)?(?:ch|px|%|mm|cm|in)$)",
+    "default": "15mm"
+  },
+  "titleBarWordCount": {
+    "description": "General--How to display the document counter in the window title bar.",
+    "type": "string",
+    "enum": ["none", "full", "short"],
+    "default": "none"
   },
   "codeFontSize": {
     "description": "Editor--Font size in code Block, the range is 12 ~ 18",

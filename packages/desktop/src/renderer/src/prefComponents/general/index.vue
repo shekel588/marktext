@@ -40,6 +40,12 @@
           :options="getTitleBarStyleOptions()"
           :on-change="(value) => onSelectChange('titleBarStyle', value)"
         />
+        <cur-select
+          :description="t('preferences.general.window.titleBarWordCount.title')"
+          :value="titleBarWordCount"
+          :options="getTitleBarWordCountOptions()"
+          :on-change="(value) => onSelectChange('titleBarWordCount', value)"
+        />
         <bool
           :description="t('preferences.general.window.hideScrollbars')"
           :bool="hideScrollbar"
@@ -234,6 +240,7 @@ import { isMac } from '@/util'
 
 import {
   getTitleBarStyleOptions,
+  getTitleBarWordCountOptions,
   zoomOptions,
   getFileSortByOptions,
   getFileSortOrderOptions,
@@ -247,6 +254,7 @@ const {
   autoSave,
   autoSaveDelay,
   titleBarStyle,
+  titleBarWordCount,
   defaultDirectoryToOpen,
   openFilesInNewWindow,
   openFolderInNewWindow,

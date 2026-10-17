@@ -24,6 +24,10 @@ export interface IUserPreferences {
   lineHeight?: number
   codeFontSize?: number
   codeFontFamily?: string
+  editorLineWidth?: string
+  editorPaddingLeft?: string
+  editorPaddingRight?: string
+  titleBarWordCount?: 'none' | 'full' | 'short'
   hideQuickInsertHint?: boolean
   hideLinkPopup?: boolean
   openedFilesInSidebar?: boolean
