@@ -40,11 +40,16 @@ const isPnpm = userAgent.startsWith('pnpm')
 const isBun = userAgent.startsWith('bun') || Boolean(process.versions.bun)
 // patch-package and electron-rebuild are locally installed; find their
 // node_modules/.bin entries in either packages/desktop or repoRoot (when hoisted by bun/npm).
-const ext = process.platform === 'win32' ? '.cmd' : ''
+// Bun on Windows generates .exe/.bunx shims, while pnpm/npm generate .cmd.
+const candidateExts = process.platform === 'win32' ? ['.exe', '.cmd', ''] : ['']
 const resolveBin = (name) => {
-  const localBin = path.join(desktopRoot, 'node_modules', '.bin', `${name}${ext}`)
-  if (fs.existsSync(localBin)) return localBin
-  return path.join(repoRoot, 'node_modules', '.bin', `${name}${ext}`)
+  for (const root of [desktopRoot, repoRoot]) {
+    for (const ext of candidateExts) {
+      const candidate = path.join(root, 'node_modules', '.bin', `${name}${ext}`)
+      if (fs.existsSync(candidate)) return candidate
+    }
+  }
+  return path.join(repoRoot, 'node_modules', '.bin', name)
 }
 const resolveMod = (...segments) => {
   const localMod = path.join(desktopRoot, 'node_modules', ...segments)
