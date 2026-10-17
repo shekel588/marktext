@@ -1,6 +1,12 @@
 name: Release MarkText
 
 on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v0.22.0)'
+        required: false
+        default: 'v0.22.0'
   push:
     # Broad trigger so the validate job can reject malformed v-tags
     # (e.g. `vbad.tag`) instead of them silently not triggering anything.
@@ -21,7 +27,7 @@ jobs:
     steps:
       - name: Validate semver tag
         run: |
-          tag="${GITHUB_REF_NAME}"
+          tag="${{ github.event.inputs.tag || github.ref_name }}"
           # SemVer 2.0.0 with leading "v"
           if ! [[ "$tag" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
             echo "::error::Tag '$tag' is not a valid semver (expected vX.Y.Z[-prerelease][+build])"
@@ -174,9 +180,11 @@ jobs:
           python-version: '3.12'
 
       - name: Merge architecture-specific update metadata
+        env:
+          RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
         run: |
           python -m pip install PyYAML==6.0.3
-          python scripts/merge-release-artifacts.py artifacts dist "${GITHUB_REF_NAME#v}"
+          python scripts/merge-release-artifacts.py artifacts dist "${RELEASE_TAG#v}"
 
       - name: Generate SHA256SUMS.txt
         working-directory: dist
@@ -219,9 +227,10 @@ jobs:
         uses: softprops/action-gh-release@v3.0.3
         with:
           draft: true
-          prerelease: ${{ contains(github.ref_name, '-') }}
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          prerelease: ${{ contains(github.event.inputs.tag || github.ref_name, '-') }}
           generate_release_notes: true
-          name: ${{ github.ref_name }}
+          name: ${{ github.event.inputs.tag || github.ref_name }}
           body_path: release_body.md
           fail_on_unmatched_files: true
           files: dist/*
@@ -229,6 +238,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Promote draft to published release
-        run: gh release edit "${GITHUB_REF_NAME}" --draft=false --repo "${GITHUB_REPOSITORY}"
         env:
+          RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release edit "${RELEASE_TAG}" --draft=false --repo "${GITHUB_REPOSITORY}"
