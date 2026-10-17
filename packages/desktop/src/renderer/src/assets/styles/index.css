@@ -78,12 +78,13 @@
   --blockquoteTextColor: var(--editorColor50);
   --blockquoteBorderColor: var(--themeColor);
   --hrColor: var(--editorColor10);
-  --linkColor: var(--themeColor);
+  --linkColor: var(--editorColor);
   --link-color: var(--linkColor);
   --blockquote-border-color: var(--blockquoteBorderColor);
   --strongColor: var(--editorColor);
   --emColor: var(--editorColor);
-  --listMarkerColor: var(--editorColor50);
+  --listMarkerColor: var(--editorColor);
+  --list-marker-color: var(--listMarkerColor);
 
   /*marktext*/
   --sideBarColor: rgba(0, 0, 0, 0.6);

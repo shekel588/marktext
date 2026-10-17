@@ -466,7 +466,7 @@ onBeforeUnmount(() => {
 }
 .source-code .CodeMirror .cm-link,
 .source-code .CodeMirror .cm-url {
-  color: var(--linkColor, var(--themeColor)) !important;
+  color: var(--linkColor, var(--editorColor)) !important;
 }
 .source-code .CodeMirror-gutters {
   border-right: none;

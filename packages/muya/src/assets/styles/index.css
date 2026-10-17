@@ -45,7 +45,7 @@
        Consumers override them per theme. The desktop themes currently use
        camelCase names (e.g. --linkColor, --h1Color); they will be migrated
        to these kebab-case names as part of the muyajs -> @muyajs/core move. */
-    --link-color: var(--theme-color);
+    --link-color: var(--editor-color);
     --h1-color: var(--editor-color-80);
     --h2-color: var(--editor-color-80);
     --h3-color: var(--editor-color-80);

@@ -38,7 +38,13 @@ span.mu-html-tag {
 /* link and auto-link and reference link */
 a.mu-inline-rule,
 span.mu-inline-rule.mu-link {
-    color: var(--link-color, var(--theme-color, rgb(33 181 111)));
+    color: var(--link-color, var(--editor-color));
+    text-decoration: none;
+}
+
+a.mu-inline-rule:hover,
+span.mu-inline-rule.mu-link:hover {
+    text-decoration: underline;
 }
 
 /* Note: previously this rule also set `pointer-events: none` to suppress

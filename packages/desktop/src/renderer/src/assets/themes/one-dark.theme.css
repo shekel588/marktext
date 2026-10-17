@@ -69,10 +69,10 @@
   --blockquoteTextColor: rgba(157, 165, 180, 0.6);
   --blockquoteBorderColor: #e2c08d;
   --hrColor: #4b5362;
-  --linkColor: var(--themeColor);
+  --linkColor: var(--editorColor);
   --strongColor: #e2c08d;
   --emColor: #c678dd;
-  --listMarkerColor: #e06c75;
+  --listMarkerColor: var(--editorColor);
 
   /*marktext*/
   --sideBarColor: #9da5b4;

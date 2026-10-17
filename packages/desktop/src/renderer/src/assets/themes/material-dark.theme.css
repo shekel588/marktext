@@ -67,10 +67,10 @@
   --blockquoteTextColor: rgba(171, 178, 191, 0.7);
   --blockquoteBorderColor: #f48237;
   --hrColor: rgba(171, 178, 191, 0.3);
-  --linkColor: var(--themeColor);
+  --linkColor: var(--editorColor);
   --strongColor: rgba(171, 178, 191, 1);
   --emColor: #c678dd;
-  --listMarkerColor: #f48237;
+  --listMarkerColor: var(--editorColor);
 
   /*marktext*/
   --sideBarColor: rgba(255, 255, 255, 0.6);

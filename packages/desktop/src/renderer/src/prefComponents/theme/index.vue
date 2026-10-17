@@ -189,42 +189,42 @@ const onSelectChange = (type: keyof PreferencesState, value: unknown): void => {
       color: rgba(255, 255, 255, 0.7);
       background: #282828;
       & a {
-        color: #409eff;
+        color: inherit;
       }
     }
     &.light {
       color: rgba(0, 0, 0, 0.7);
       background: rgba(255, 255, 255, 1);
       & a {
-        color: rgba(33, 181, 111, 1);
+        color: inherit;
       }
     }
     &.graphite {
       color: rgba(43, 48, 50, 0.7);
       background: #f7f7f7;
       & a {
-        color: rgb(104, 134, 170);
+        color: inherit;
       }
     }
     &.material-dark {
       color: rgba(171, 178, 191, 0.8);
       background: #34393f;
       & a {
-        color: #f48237;
+        color: inherit;
       }
     }
     &.one-dark {
       color: #9da5b4;
       background: #282c34;
       & a {
-        color: rgba(226, 192, 141, 1);
+        color: inherit;
       }
     }
     &.ulysses {
       color: rgba(101, 101, 101, 0.7);
       background: #f3f3f3;
       & a {
-        color: rgb(12, 139, 186);
+        color: inherit;
       }
     }
 
@@ -233,140 +233,140 @@ const onSelectChange = (type: keyof PreferencesState, value: unknown): void => {
       color: #f8f8f2;
       background: #282a36;
       & a {
-        color: #bd93f9;
+        color: inherit;
       }
     }
     &.nord {
       color: #d8dee9;
       background: #2e3440;
       & a {
-        color: #81a1c1;
+        color: inherit;
       }
     }
     &.catppuccin-mocha {
       color: #cdd6f4;
       background: #1e1e2e;
       & a {
-        color: #89b4fa;
+        color: inherit;
       }
     }
     &.gruvbox-dark {
       color: #ebdbb2;
       background: #282828;
       & a {
-        color: #83a598;
+        color: inherit;
       }
     }
     &.tokyo-night {
       color: #c0caf5;
       background: #1a1b26;
       & a {
-        color: #7aa2f7;
+        color: inherit;
       }
     }
     &.tokyo-night-storm {
       color: #c0caf5;
       background: #24283b;
       & a {
-        color: #7aa2f7;
+        color: inherit;
       }
     }
     &.solarized-dark {
       color: #839496;
       background: #002b36;
       & a {
-        color: #268bd2;
+        color: inherit;
       }
     }
     &.ayu-dark {
       color: #b3b1ad;
       background: #0a0e14;
       & a {
-        color: #39bae6;
+        color: inherit;
       }
     }
     &.ayu-mirage {
       color: #cbccc6;
       background: #1f2430;
       & a {
-        color: #ffcc66;
+        color: inherit;
       }
     }
     &.everforest-dark {
       color: #d3c6aa;
       background: #2d353b;
       & a {
-        color: #a7c080;
+        color: inherit;
       }
     }
     &.rose-pine {
       color: #e0def4;
       background: #191724;
       & a {
-        color: #c4a7e7;
+        color: inherit;
       }
     }
     &.rose-pine-moon {
       color: #e0def4;
       background: #232136;
       & a {
-        color: #c4a7e7;
+        color: inherit;
       }
     }
     &.monokai-pro {
       color: #fcfcfa;
       background: #2d2a2e;
       & a {
-        color: #ffd866;
+        color: inherit;
       }
     }
     &.synthwave-84 {
       color: #ffffff;
       background: #262335;
       & a {
-        color: #ff7edb;
+        color: inherit;
       }
     }
     &.horizon-dark {
       color: #d5d8da;
       background: #1c1e26;
       & a {
-        color: #e95678;
+        color: inherit;
       }
     }
     &.palenight {
       color: #a6accd;
       background: #292d3e;
       & a {
-        color: #82aaff;
+        color: inherit;
       }
     }
     &.oxocarbon-dark {
       color: #f2f4f8;
       background: #161616;
       & a {
-        color: #78a9ff;
+        color: inherit;
       }
     }
     &.kanagawa {
       color: #dcd7ba;
       background: #1f1f28;
       & a {
-        color: #7e9cd8;
+        color: inherit;
       }
     }
     &.nightfox {
       color: #cdcecf;
       background: #192330;
       & a {
-        color: #719cd6;
+        color: inherit;
       }
     }
     &.cyberdream {
       color: #ffffff;
       background: #16181a;
       & a {
-        color: #5ea1ff;
+        color: inherit;
       }
     }
 
@@ -375,49 +375,49 @@ const onSelectChange = (type: keyof PreferencesState, value: unknown): void => {
       color: #4c4f69;
       background: #eff1f5;
       & a {
-        color: #1e66f5;
+        color: inherit;
       }
     }
     &.gruvbox-light {
       color: #3c3836;
       background: #fbf1c7;
       & a {
-        color: #458588;
+        color: inherit;
       }
     }
     &.tokyo-night-light {
       color: #343b58;
       background: #d5d6db;
       & a {
-        color: #34548a;
+        color: inherit;
       }
     }
     &.solarized-light {
       color: #657b83;
       background: #fdf6e3;
       & a {
-        color: #268bd2;
+        color: inherit;
       }
     }
     &.ayu-light {
       color: #575f66;
       background: #fafafa;
       & a {
-        color: #399ee6;
+        color: inherit;
       }
     }
     &.everforest-light {
       color: #5c6a72;
       background: #fdf6e3;
       & a {
-        color: #8da101;
+        color: inherit;
       }
     }
     &.rose-pine-dawn {
       color: #575279;
       background: #faf4ed;
       & a {
-        color: #907aa9;
+        color: inherit;
       }
     }
 
